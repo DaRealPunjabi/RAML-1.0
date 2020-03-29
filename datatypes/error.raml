@@ -1,0 +1,38 @@
+#%RAML 1.0 DataType
+
+properties:
+  type: 
+    description: Error Type
+    required: true
+    type: string
+    enum:
+      - 'json'
+      - 'form'
+      - 'header'        
+      - 'query'        
+  datapath: 
+    description: Natural path to the error message
+    required: false
+    type: string
+    example: email
+  keyword:
+    description: Keyword that failed validation
+    required: false
+    type: string
+    example: format
+  schema:
+    description: The schema value that failed validation 
+    required: false
+    type: any
+    example: true
+  data: 
+    description: The data that failed validation
+    required: false
+    type: any
+    example: Pasw@rd
+  message:
+    description: Message Description 
+    required: true
+    type: string
+    example: 'Missing required property: email'
+

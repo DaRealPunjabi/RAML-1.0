@@ -1,0 +1,43 @@
+#%RAML 1.0 DataType
+
+displayName: Account
+description: Basic entity for all account types
+type: object
+properties:
+  account_number:
+    displayName: Account Number
+    description: Unique account identifier
+    required: true
+    type: string
+    pattern: ^[0-9]{6}$
+    example: "012345"
+  alias:
+    displayName: Account Description
+    description: Friendly user designated name, making it easier to identifying accounts. 
+    required: true
+    type: string
+    maxLength: 25
+    example: "Joint Household Account"
+  type:
+    displayName: Account Type
+    description: Account type defines the general purpose of the account.
+    required: true
+    type: string
+    enum:
+      - 'Checking'
+      - 'Saving'
+      - 'Investment'
+  balance:
+    displayName: Account Balance
+    description: Funds available for withdrawal.
+    required: true
+    type: number
+  status:
+    displayName: Status
+    description: Status indicating recent or latest activity type on the account
+    required: true
+    type: string
+    enum:
+      - 'Active'
+      - 'Dormant'
+      - 'Closed'

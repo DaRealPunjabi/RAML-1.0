@@ -1,0 +1,17 @@
+#%RAML 1.0 Library
+usage:
+
+types:
+  
+  error: !include ./error.raml
+
+  error_response:
+    properties:
+      errors: error[]
+      stack:
+        description: Stack trace of the error 
+        required: false
+        type: string
+        example: 'BadRequestError: Request failed to validate against RAML definition\n    at createValidationError'
+
+

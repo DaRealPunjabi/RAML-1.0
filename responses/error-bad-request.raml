@@ -1,0 +1,17 @@
+#%RAML 1.0 NamedExample
+value:
+  errors:
+  - type: json
+    datapath: email
+    keyword: required
+    schema: true
+    message: 'Missing required property: email'
+  - type: json
+    datapath: password
+    keyword: pattern
+    schema: "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$"
+    data: Pasw@rd
+    message: 'String does not match pattern: ^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$'
+  stack: |
+    BadRequestError: Request failed to validate against RAML definition
+      at createValidationError (/usr/local/lib/node_modules/raml-mock-service/node_modules/osprey-method-handler/osprey-method-handler.js:746:14)

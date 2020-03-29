@@ -1,0 +1,74 @@
+#%RAML 1.0 Library
+usage:
+
+types:
+  id: !include ../datatypes/id.raml
+
+traits:
+  hasSuccessResponse: !include ../traits/success-ok.raml
+  hasErrorBadRequest: !include ../traits/error-bad-request.raml
+
+uses:
+  account_lib: ../datatypes/account-lib.raml
+  error_lib: ../datatypes/error-lib.raml
+
+resourceTypes:
+  collection:
+    usage: Use this resourceType to represent any collection
+    description: A collection of <<resourcePathName|!uppercamelcase>>
+    get:
+      description: |
+        Get a new <<resourcePathName|!uppercamelcase|!singularize>>
+      responses:
+        200:
+          body:
+            application/json:
+              type: <<typeName>>[]
+              example: <<exampleCollection>>
+    post:
+      description: |
+        Create a new <<resourcePathName|!uppercamelcase|!singularize>>
+      body:
+        application/json:
+          type: <<typeName>>
+          example: <<exampleRequest>>
+      responses:
+        200:
+          body:
+            application/json:
+              type: <<typeName>>
+              example: <<exampleResponse>>
+    put:
+      description: |
+        Update a new <<resourcePathName|!uppercamelcase|!singularize>>
+      body:
+        application/json:
+          type: <<typeName>>
+          example: <<exampleRequest>>
+      responses:
+        200:
+          body:
+            application/json:
+              type: <<typeName>>
+              example: <<exampleResponse>>
+    delete:
+      description: |
+        Delete a new <<resourcePathName|!uppercamelcase|!singularize>>
+      body:
+        application/json:
+          type: id
+      is:
+        - hasSuccessResponse:
+        - hasErrorBadRequest: {errorResponse: error_lib.error_response}
+  item:
+    usage: Use this resourceType to represent any single item
+    description: A single <<typeName>>
+    get:
+      description: |
+        Get a new <<resourcePathName|!uppercamelcase|!singularize>>
+      responses:
+        200:
+          body:
+            application/json:
+              type: <<typeName>>
+              example: <<exampleResponse>>

@@ -1,0 +1,57 @@
+#%RAML 1.0 Library
+usage: Library defining account types
+
+uses:
+  monetary_lib: ./monetary-lib.raml
+
+types:
+  acc_alias: !include ./account-alias.raml
+  acc_number: !include ./account-number.raml
+  acc_status: !include ../datatypes/account-status.raml
+  acc_type: !include ../datatypes/account-type.raml
+
+  checking_type: 
+    properties:
+      account_type: 
+        type: acc_type
+        enum:
+          - 'checking'
+            
+  saving_type:
+    properties:
+      account_type: 
+        type: acc_type
+        enum:
+          - 'saving'          
+
+  investment_type:
+    properties:
+      account_type: 
+        type: acc_type
+        enum:
+          - 'investment'          
+            
+  base_entity:
+    properties:
+      account_alias: acc_alias
+      account_number: acc_number
+      account_status: acc_status
+
+  checking_account: 
+    properties:
+      type_data:  checking_type
+      base_data:  base_entity
+
+  saving_account: 
+    properties:
+      type_data:  saving_type
+      base_data:  base_entity
+
+  investment_account: 
+    properties:
+      type_data:  investment_type
+      base_data:  base_entity
+
+  
+        
+      
